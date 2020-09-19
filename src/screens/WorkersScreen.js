@@ -4,24 +4,10 @@ import { View, Text, StyleSheet } from "react-native";
 import Colors from "../constants/Colors";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-export default function OrdersScreen(props, { navigation }) {
+export default function WorkersScreen(props, { navigation }) {
   return (
-    <View style={{ flex: 1 }}>
-      <View style={styles.items}>
-        <Text style={{ fontSize: 18 }}>Orders</Text>
-      </View>
-      <View style={styles.items}>
-        <Text style={{ fontSize: 18 }}>Order 1</Text>
-      </View>
-      <View style={styles.items}>
-        <Text style={{ fontSize: 18 }}>Order 2</Text>
-      </View>
-      <View style={styles.items}>
-        <Text style={{ fontSize: 18 }}>Order 3</Text>
-      </View>
-      <View style={styles.logout}>
-        <Text style={{ fontSize: 24 }}>Logout</Text>
-      </View>
+    <View style={styles.items}>
+      <Text style={{ fontSize: 18 }}>Workers Screen</Text>
     </View>
   );
 }
