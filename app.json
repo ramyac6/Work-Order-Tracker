@@ -1,0 +1,12 @@
+{
+  "name": "WorkOrderTracker",
+  "displayName": "WorkOrderTracker",
+  "expo": {
+    "name": "WorkOrderTracker",
+    "slug": "WorkOrderTracker",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
