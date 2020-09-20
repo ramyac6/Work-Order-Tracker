@@ -1,27 +1,65 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
-
-import Colors from "../constants/Colors";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
+import { firebase } from "../config/firebaseConfig";
+import Colors from "../constants/Colors";
+
 export default function OrdersScreen(props, { navigation }) {
+  const onUserPress = () => {};
+
+  function signout() {
+    firebase
+      .auth()
+      .signOut()
+      .then(function () {
+        // Sign-out successful.
+        console.log("Signed out");
+      })
+      .catch(function (error) {
+        // An error happened.
+        console.log(error);
+      });
+  }
+
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.items}>
-        <Text style={{ fontSize: 18 }}>Orders</Text>
+        <Text style={{ fontSize: 24 }}>Current Orders</Text>
       </View>
       <View style={styles.items}>
-        <Text style={{ fontSize: 18 }}>Order 1</Text>
+        <Text style={{ fontSize: 18 }}>Order# 1005</Text>
+        <Text style={{ fontSize: 16 }}>Equipment: vehicle</Text>
+        <Text style={{ fontSize: 16 }}>EquipmentID: Veh123</Text>
+        <Text style={{ fontSize: 16 }}>Facility: Fac5</Text>
+        <Text style={{ fontSize: 16 }}>Priority: 1</Text>
+        <Text style={{ fontSize: 16 }}>Time: 6</Text>
       </View>
       <View style={styles.items}>
-        <Text style={{ fontSize: 18 }}>Order 2</Text>
+        <Text style={{ fontSize: 18 }}>Order# 1002</Text>
+        <Text style={{ fontSize: 16 }}>Equipment: conveyor</Text>
+        <Text style={{ fontSize: 16 }}>EquipmentID: Con391</Text>
+        <Text style={{ fontSize: 16 }}>Facility: Fac3</Text>
+        <Text style={{ fontSize: 16 }}>Priority: 1</Text>
+        <Text style={{ fontSize: 16 }}>Time: 4</Text>
       </View>
       <View style={styles.items}>
-        <Text style={{ fontSize: 18 }}>Order 3</Text>
+        <View style={styles.items}>
+          <Text style={{ fontSize: 18 }}>Order# 1001</Text>
+          <Text style={{ fontSize: 16 }}>Equipment: separator</Text>
+          <Text style={{ fontSize: 16 }}>EquipmentID: cbkd</Text>
+          <Text style={{ fontSize: 16 }}>Facility: Fac2</Text>
+          <Text style={{ fontSize: 16 }}>Priority: 4</Text>
+          <Text style={{ fontSize: 16 }}>Time: 2</Text>
+          <Text style={{ fontSize: 16 }}>Worker: Jackie</Text>
+        </View>
       </View>
-      <View style={styles.logout}>
-        <Text style={{ fontSize: 24 }}>Logout</Text>
-      </View>
+
+      <TouchableOpacity onPress={signout}>
+        <View style={styles.logout}>
+          <Text style={{ fontSize: 24 }}>Logout</Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 }

@@ -18,9 +18,10 @@ export default function HomeScreen(props, { navigation }) {
     >
       <Tabs.Screen name="New Order" component={NewOrderScreen} />
       <Tabs.Screen name="Orders" component={OrdersScreen} />
+      {/*
       <Tabs.Screen name="Workers" component={WorkersScreen} />
 
-      {/*
+      
       <Tabs.Screen name="Settings">
         {(props) => <SettingsScreen {...props} extraData={userID} />}
       </Tabs.Screen>

@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import {
-  Image,
-  ImageBackground,
   Text,
   TextInput,
   TouchableOpacity,
@@ -9,19 +7,20 @@ import {
   StyleSheet,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { Dropdown } from "react-native-material-dropdown";
+import { Dropdown } from "react-native-material-dropdown-v2";
 
 import { firebase } from "../config/firebaseConfig";
 import Colors from "../constants/Colors";
 
 export default function NewOrderScreen({ navigation }) {
-  let orderNum = 1000;
+  let orderNum = 1004;
   const [facility, setFacility] = useState("");
   const [equipment, setEquipment] = useState("");
   const [equipmentID, setEquipmentID] = useState("");
   const [priority, setPriority] = useState("");
   const [time, setTime] = useState("");
   const assignedWorker = "";
+  const inProgress = false;
 
   const onRegisterPress = () => {
     if (
@@ -42,6 +41,7 @@ export default function NewOrderScreen({ navigation }) {
       priority,
       time,
       assignedWorker,
+      inProgress,
     };
 
     orderNum = orderNum + 1;
