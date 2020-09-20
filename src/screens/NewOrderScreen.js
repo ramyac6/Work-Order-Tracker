@@ -15,43 +15,42 @@ import { firebase } from "../config/firebaseConfig";
 import Colors from "../constants/Colors";
 
 export default function NewOrderScreen({ navigation }) {
+  let orderNum = 1000;
   const [facility, setFacility] = useState("");
   const [equipment, setEquipment] = useState("");
   const [equipmentID, setEquipmentID] = useState("");
   const [priority, setPriority] = useState("");
-
   const [time, setTime] = useState("");
-
-  const onFooterLinkPress = () => {
-    navigation.navigate("Login");
-  };
+  const assignedWorker = "";
 
   const onRegisterPress = () => {
-    if (password !== confirmPassword) {
-      alert("Passwords don't match.");
+    if (
+      facility == "" ||
+      equipment == "" ||
+      equipmentID == "" ||
+      priority == "" ||
+      time == ""
+    ) {
+      alert("A field was left empty");
       return;
     }
 
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then((response) => {
-        const uid = response.user.uid;
-        const data = {
-          id: uid,
-          email,
-          fullName,
-        };
-        const usersRef = firebase.firestore().collection("users");
-        usersRef
-          .doc(uid)
-          .set(data)
-          .then(() => {
-            navigation.navigate("Home", { user: data });
-          })
-          .catch((error) => {
-            alert(error);
-          });
+    const data = {
+      facility,
+      equipment,
+      equipmentID,
+      priority,
+      time,
+      assignedWorker,
+    };
+
+    orderNum = orderNum + 1;
+    const orderRef = firebase.firestore().collection("orders");
+    orderRef
+      .doc(orderNum.toString())
+      .set(data)
+      .then(() => {
+        navigation.navigate("Orders");
       })
       .catch((error) => {
         alert(error);
@@ -166,7 +165,7 @@ export default function NewOrderScreen({ navigation }) {
         </View>
         <TextInput
           style={styles.input}
-          placeholder="Time to Complete"
+          placeholder="Time to Complete (in hours)"
           placeholderTextColor="#aaaaaa"
           onChangeText={(text) => setTime(text)}
           value={time}
@@ -176,7 +175,7 @@ export default function NewOrderScreen({ navigation }) {
         />
         <TouchableOpacity
           style={styles.button}
-          //onPress={() => onRegisterPress()}
+          onPress={() => onRegisterPress()}
         >
           <Text style={styles.buttonTitle}>Submit Work Order</Text>
         </TouchableOpacity>
@@ -215,7 +214,6 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
   },
   dropdown: {
-    //height: 48,
     borderRadius: 5,
     overflow: "hidden",
     backgroundColor: "white",
